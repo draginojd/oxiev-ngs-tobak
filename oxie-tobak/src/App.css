@@ -142,7 +142,7 @@ width: 100%;
 }
 
 
-/*HOME */
+/*HOME-------------------------------------------------------- */
 .home-containers{
   display: flex;
   position: absolute;
@@ -152,7 +152,7 @@ width: 100%;
   justify-content: center;
   flex-direction: column;
   width: 100vw;
- background-color: rgb(115, 255, 0);
+ 
 
 }
 
