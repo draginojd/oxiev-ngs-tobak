@@ -248,4 +248,46 @@ border: solid 6px rgb(255, 0, 221);
  .carousel-caption a p{
    color: white;
  }
+ /* ---------------------------*/
+
+ /*--------------------IPHONE CARD START--------------*/
+.cards-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px red solid;
+width: 100%;
+height: 100%;
+}
+ .cards-inner{
+  width: 100%;
+  height: 100%;
+  border: 2px blue solid;
+ }
+
+ .cards{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
  
+  border:  solid 2px rgb(0, 128, 17);
+ }
+
+ .card{
+
+  background-color: yellow;
+ }
+
+ .card img{
+  width: 100%;
+  height: 40vh;
+
+ }
+
+ .news{
+  width: 10vw;
+ 
+  background-color: red;
+ }
+  /*--------------------IPHONE CARD END--------------*/
