@@ -2,7 +2,7 @@ import React from 'react';
 import transition from '../transition';
 import { motion } from "framer-motion";
 
-
+/*test*/
 export const About = () => {
   return (
     <motion.div className="home-containers"
