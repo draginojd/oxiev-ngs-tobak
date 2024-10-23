@@ -32,21 +32,24 @@ html, body{
 }
  */
 
-nav{
+.navbar{
   display: flex;
-  position: fixed;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ position: absolute;
   width: 100%;
-  height: 8%;
+  padding: 0;
   top: 0%;
   background-color: rgb(38, 39, 39);
   background: rgb(70,70,70);
   background: linear-gradient(90deg, rgba(20, 102, 209, 0.972) 0%, rgba(32, 136, 255, 0.956) 50%, rgba(20, 102, 209, 0.972) 100%);
-
+  border: solid 3px green;
 
 }
 
 nav .logo{
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -71,6 +74,7 @@ nav .nav-links{
 
 nav .nav-links .nav-item{
   display: flex;
+  align-items: center;
   justify-content: center;
  width:100%;
 }
@@ -78,17 +82,20 @@ nav .nav-links .nav-item{
 nav .nav-links .nav-item .nav-link{
  
   display: flex;
+  align-items: center;
+  justify-content: center;
   color: rgb(255, 255, 255);
   opacity: 1;
   font-weight: 300;
- 
+ width: 100%;
+ border: solid 1px red;
 }
 
 .nav-link h1{
   font-weight: 300;
   font-size: clamp(0.2em, 1.2em ,1.5em);
   width: 100%;
- 
+text-align: center;
 }
 
 
@@ -103,8 +110,9 @@ a.nav-link.active{
   align-items: center;
   justify-content: center;
   border-radius: 4%;
-
+  text-align: center;
 width: 100%;
+
 }
 
 a.nav-link.active h1{
@@ -116,7 +124,7 @@ a.nav-link.active h1{
   font-weight: 600;
   box-shadow: rgb(255, 255, 255) 0 0 1px 1px;
   transition: 0.2s;
- 
+
   
 }
 
@@ -133,26 +141,26 @@ width: 100%;
   display: flex;
   position: relative;
   align-items: center;
-  padding: 4%;
+  padding: 1%;
 }
 
 .socials img{
   
-  width: 4vh;
+  width: 3vh;
 }
 
 
 /*HOME-------------------------------------------------------- */
 .home-containers{
   display: flex;
-  position: absolute;
-  top: 14%;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
+ padding: 0;
+ margin: 0;
   width: 100vw;
- 
+ border: solid 1px red;
+ top: 0;
 
 }
 
@@ -194,3 +202,57 @@ border: solid 6px rgb(255, 0, 221);
   border: solid 6px rgb(255, 255, 255);
 }
 
+
+
+
+/*--------SLIDESHOW START--------- */
+.carousel-container{
+  
+  display:flex;
+  align-items: center;
+  justify-content: center;
+   width: 100%;
+  height: 100%;
+   padding: 0%;
+   
+ }
+ 
+ .carousel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+ 
+ }
+ 
+ .carousel img{
+   object-fit: cover;
+   width: 100%;
+   height: 60vh;
+ }
+ 
+ 
+ 
+ .carousel-caption{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   position: sticky;
+   justify-content: center;
+   text-align: center;
+   width: auto;
+  
+  
+ }
+ 
+ .carousel-caption h3{
+   color: white;
+   width: 100%;
+ }
+ 
+ 
+ .carousel-caption a p{
+   color: white;
+ }
+ 

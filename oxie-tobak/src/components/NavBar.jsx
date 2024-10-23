@@ -5,7 +5,7 @@ import picture2 from "../assets/facebook-logo.svg";
 import picture3 from "../assets/instagram-logo.svg";
 import picture4 from "../assets/tiktok-logo.svg";
 import transition from '../transition';
-
+import IMAGES from "../assets";
 
 export const NavBar = () => {
   return (

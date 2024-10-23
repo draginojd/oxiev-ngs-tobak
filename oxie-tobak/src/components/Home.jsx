@@ -1,8 +1,8 @@
-import React from 'react';
-import transition from '../transition';
-import { motion } from "framer-motion";
-import Slider from './Slider';
-
+import React from 'react'
+import transition from '../transition'
+import { motion } from "framer-motion"
+import Slideshow from './SlideShow'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -27,9 +27,8 @@ export const Home = () => {
       </div>
 
   
-
-      <Slider />
-      
+<Slideshow className="slideshow"></Slideshow>
+    
     </motion.div>
     
   );
