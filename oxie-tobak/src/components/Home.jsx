@@ -2,6 +2,7 @@ import React from 'react'
 import transition from '../transition'
 import { motion } from "framer-motion"
 import Slideshow from './SlideShow'
+import IphoneCards from './IphoneCards'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,7 +21,7 @@ export const Home = () => {
  
 
       <Slideshow className="slideshow"></Slideshow>
-
+      <IphoneCards className="iphone-cards"> </IphoneCards>
     
     </motion.div>
     
