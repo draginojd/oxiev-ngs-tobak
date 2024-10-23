@@ -5,11 +5,31 @@ const transition = (MVPComponent) => {
         <>
             <MVPComponent />
             <motion.div className="slide-in"
-                    initial={{ opacity:0}}
-                    animate={{  opacity: 1}}
-                    exit={{ opacity:0 }}
-                    transition={{ duration: 0.5}} 
-            />
+                   initial={{opacity:1,scale:0}
+                }
+                    animate={{
+                        
+                     
+                       
+                        scale: {
+                            type: "spring",
+                            damping: 5,
+                            stiffness: 100,
+                            restDelta: 0.001
+                          }
+                        
+                      }}
+                      transition={{
+                        duration: 0.8,
+                     
+                        ease: "easeIn",
+                      
+                      
+                     
+                      }}
+                    exit={{ opacity:1 }}
+                    
+            ><p>HEJ</p></motion.div>
 
         {/*     <motion.div className="slide-out"
                  initial={{ opacity:0}}

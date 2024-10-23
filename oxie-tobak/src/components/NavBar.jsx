@@ -1,18 +1,15 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
-import picture1 from "../assets/Oxievangs-Tobak-logo.svg";
-import picture2 from "../assets/facebook-logo.svg";
-import picture3 from "../assets/instagram-logo.svg";
-import picture4 from "../assets/tiktok-logo.svg";
 import transition from '../transition';
 import IMAGES from "../assets";
 
 export const NavBar = () => {
   return (
     <nav className="navbar">
+        <div className="navbar-inner">
         <div className="logo">
             <Link className="nav-link" to="/">
-            <img src={picture1} alt="Logo" />
+            <img src={IMAGES.picture1} alt="Logo" />
             </Link>
         </div>
 
@@ -47,17 +44,19 @@ export const NavBar = () => {
         <div className="socials">
         
             <a className="socials-nav-link" to="/" target='_blank' href='https://www.facebook.com/'>
-            <img className="socials-img" src={picture2} alt="facebook" />
+            <img className="socials-img" src={IMAGES.picture2} alt="facebook" />
             </a>
             <a className="socials-nav-link" to="/" target='_blank' href='https://www.instagram.com/'>
-            <img className="socials-img" src={picture3} alt="instagram" />
+            <img className="socials-img" src={IMAGES.picture3} alt="instagram" />
             </a>
             <a className="socials-nav-link" to="/" target='_blank' href='https://www.tiktok.com/'>
-            <img className="socials-img" src={picture4} alt="Logo" />
+            <img className="socials-img" src={IMAGES.picture4} alt="Logo" />
             </a>
         </div>
+        </div>
+        
     </nav>
   );
 };
 
-export default transition(NavBar);
+export default NavBar;

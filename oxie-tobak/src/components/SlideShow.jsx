@@ -11,7 +11,7 @@ const SlideShow = () => {
   return (
 
     <div className="carousel-container">
-  {/*           <Carousel className="carousel">
+             <Carousel className="carousel">
       
             <Carousel.Item>
             <img className="d-block w-100" src={IMAGES.slide1} alt="First slide" />
@@ -43,7 +43,7 @@ const SlideShow = () => {
             </Carousel.Caption>
             </Carousel.Item>
 
-    </Carousel> */}
+    </Carousel> 
   </div>
 );
 };
