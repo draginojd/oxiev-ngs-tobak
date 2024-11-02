@@ -1,50 +1,40 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import IMAGES from "../assets";
-
-// index.js or App.js
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Carousel from 'react-bootstrap/Carousel';
+// Directly import images.json
+import imageData from '../images.json';
 
-const SlideShow = () => {
+function SlideShow() {
+  const [Images, setImages] = useState([]); // Initialize state
+
+  useEffect(() => {
+    // Access 'carousel' data within imageData and add UUIDs
+    const imagesWithIds = imageData.carousel.map(image => ({
+      id: uuidv4(),
+      ...image,
+    }));
+    setImages(imagesWithIds);
+  }, []);
+
   return (
-
     <div className="carousel-container">
-             <Carousel className="carousel">
-      
-            <Carousel.Item>
-            <img className="d-block w-100" src={IMAGES.slide1} alt="First slide" />
+      <Carousel className="carousel">
+        {Images.map(image => (
+          <Carousel.Item key={image.id}>
+            <img className="d-block w-100" src={image.url} alt={image.caption} />
             <Carousel.Caption>
-            <a href="https://www.google.com/" target="_blank">
-                <h3>First Slide</h3>
-                <p>This is the first slide of the carousel.</p>
-            </a>
+              <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                <h3>{image.caption}</h3>
+                <p>{image.description}</p>
+              </a>
             </Carousel.Caption>
-            </Carousel.Item>
-        
-            <Carousel.Item>
-            <img className="d-block w-100" src={IMAGES.slide2} alt="Second slide" />
-            <Carousel.Caption>
-            <a href="https://www.google.com/" target="_blank">
-                <h3>Second Slide</h3>
-                <p>This is the second slide of the carousel.</p>
-            </a>
-            </Carousel.Caption>
-            </Carousel.Item>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
+  );
+}
 
-            <Carousel.Item>
-            <img className="d-block w-100" src={IMAGES.slide3} alt="Third slide" />
-            <Carousel.Caption>
-            <a href="https://www.google.com/" target="_blank">
-                <h3>Third Slide</h3>
-                <p>This is the Third slide of the carousel.</p>
-            </a>
-            </Carousel.Caption>
-            </Carousel.Item>
-
-    </Carousel> 
-  </div>
-);
-};
 export default SlideShow;

@@ -1,60 +1,73 @@
-import React from 'react';
-import {Link, NavLink} from "react-router-dom";
-import transition from '../transition';
-import IMAGES from "../assets";
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import Images from "../images.json"; // Assuming this is the correct path
 
 export const NavBar = () => {
+  const [images, setImages] = useState([]); // Initialize state
+
+  useEffect(() => {
+    // You can directly use the imported Images if it's correctly imported
+    const imagesWithIds = Images.navbar.map(image => ({
+      id: uuidv4(),
+      ...image,
+    }));
+
+    console.log(imagesWithIds);
+    setImages(imagesWithIds);
+  }, []);
+
   return (
     <nav className="navbar">
-        <div className="navbar-inner">
+      <div className="navbar-inner">
         <div className="logo">
-            <Link className="nav-link" to="/">
-            <img src={IMAGES.picture1} alt="Logo" />
-            </Link>
+          <Link className="nav-link" to="/">
+            <img src={images[0]?.logo[0]?.url} alt={images[0]?.logo[0]?.caption} />
+          </Link>
         </div>
 
         <div className="nav-links">
-            <div className="nav-item">
-                <NavLink className="nav-link"  to="/" activeClassname="active-link">
-                    <h1>Hem</h1>
-                </NavLink>
-            </div>
-            <div className="nav-item">
-                <NavLink className="nav-link" to="/about" activeClassname="active-link"  >
-                <h1>Om oss</h1>
-                </NavLink>
-            </div>
-            <div className="nav-item">
-                <NavLink className="nav-link" to="/contact" activeClassname="active-link" >
-                <h1>Kontakt</h1>
-                </NavLink>
-            </div>
-            <div className="nav-item">
-                <NavLink className="nav-link" to="/find-us" activeClassname="active-link" >
-                <h1>Hitta Butik</h1>
-                </NavLink>
-            </div>
-            <div className="nav-item">
-                <a className="nav-link" to="/" activeClassname="active-link" target='_blank' href='https://www.atg.se/oxievangstobak' >
-                <h1>Spela Nu</h1>
-                </a>
-            </div>
+          <div className="nav-item">
+            <NavLink className="nav-link" to="/" activeClassName="active-link">
+              <h1>Hem</h1>
+            </NavLink>
+          </div>
+          <div className="nav-item">
+            <NavLink className="nav-link" to="/about" activeClassName="active-link">
+              <h1>Om oss</h1>
+            </NavLink>
+          </div>
+          <div className="nav-item">
+            <NavLink className="nav-link" to="/contact" activeClassName="active-link">
+              <h1>Kontakt</h1>
+            </NavLink>
+          </div>
+          <div className="nav-item">
+            <NavLink className="nav-link" to="/find-us" activeClassName="active-link">
+              <h1>Hitta Butik</h1>
+            </NavLink>
+          </div>
+          <div className="nav-item">
+            <a className="nav-link" href="https://www.atg.se/oxievangstobak" target='_blank' rel="noopener noreferrer">
+              <h1>Spel</h1>
+            </a>
+          </div>
         </div>
 
         <div className="socials">
-        
-            <a className="socials-nav-link" to="/" target='_blank' href='https://www.facebook.com/'>
-            <img className="socials-img" src={IMAGES.picture2} alt="facebook" />
+          {images[0]?.socials.map((social) => (
+            <a
+              key={uuidv4()} // Generating unique key for each social link
+              className="socials-nav-link"
+              href={social.url} // Assuming you want the correct URL for each social
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="socials-img" src={social.url} alt={social.caption} />
             </a>
-            <a className="socials-nav-link" to="/" target='_blank' href='https://www.instagram.com/'>
-            <img className="socials-img" src={IMAGES.picture3} alt="instagram" />
-            </a>
-            <a className="socials-nav-link" to="/" target='_blank' href='https://www.tiktok.com/'>
-            <img className="socials-img" src={IMAGES.picture4} alt="Logo" />
-            </a>
+          ))}
         </div>
-        </div>
-        
+      </div>
     </nav>
   );
 };

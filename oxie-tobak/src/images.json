@@ -1,0 +1,96 @@
+{ 
+"navbar": [
+  {
+    "logo": 
+    [
+      {
+        "caption": "Oxievang-tobak-logo",
+        "url": "/assets/navbar/Oxievangs-Tobak-logo.svg"
+      }
+    ],
+    "socials": 
+    [
+      {
+        "caption": "facebook-logo",
+        "url": "/assets/navbar/facebook-logo.svg"
+      },
+      {
+        "caption": "instagram-logo",
+        "url": "/assets/navbar/instagram-logo.svg"
+      },
+      {
+        "caption": "tiktok-logo",
+        "url": "/assets/navbar/tiktok-logo.svg"
+      }
+    ]
+  
+  }
+] , 
+
+"iphones": [
+  {
+    "url": "/assets/iphoneCard/iphone1.svg"
+  },
+  {
+      "url": "/assets/iphoneCard/iphone2.svg"
+  },
+  {
+      "url": "/assets/iphoneCard/iphone3.svg"
+  }],
+
+  "carousel": [
+    {
+      "caption": "First Slide",
+      "description": "This is the first image description.",
+      "url": "/assets/carousel/cigarette.jpg"
+    },
+    {
+      "caption": "Second Slide",
+      "description": "This is the second image description.",
+      "url": "/assets/carousel/winning.png"
+    },
+    {
+      "caption": "Third Slide",
+      "description": "This is the third image description.",
+      "url": "/assets/carousel/slide3.png"
+    }],
+
+    "fourImages": [
+    {
+      "caption": "First Image - 1 Images",
+      "description": "This is the first image description.",
+      "url": "/assets/carousel/winning.png"
+    },
+    {
+      "caption": "First Image - 2 Images",
+      "description": "This is the second image description.",
+      "url": "/assets/carousel/winning.png"
+    },
+    {
+      "caption": "First Image - 3 Images",
+      "description": "This is the third image description.",
+      "url": "/assets/carousel/winning.png"
+    },
+    {
+      "caption": "First Image - 4 Images",
+      "description": "This is the third image description.",
+      "url": "/assets/carousel/winning.png"
+    }],
+
+  "threeImages": [
+    {
+      "caption": "First Slide",
+      "description": "This is the first image description.",
+      "url": "/assets/carousel/slide3.png"
+    },
+    {
+      "caption": "Second Slide",
+      "description": "This is the second image description.",
+      "url": "/assets/carousel/slide3.png"
+    },
+    {
+      "caption": "Third Slide",
+      "description": "This is the third image description.",
+      "url": "/assets/carousel/slide3.png"
+    }]
+}

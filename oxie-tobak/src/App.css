@@ -151,9 +151,9 @@ width: 100%;
   flex-direction: column;
   padding: 0;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   top: 0;
-  background-color: rgb(38, 39, 39);
+  background-color: rgb(36, 36, 36);
   color: white;
 }
 
@@ -222,6 +222,7 @@ border: solid 6px rgb(255, 0, 221);
    object-fit: cover;
    width: 100%;
    height: 60vh;
+   
  }
  
  
@@ -235,58 +236,172 @@ border: solid 6px rgb(255, 0, 221);
    justify-content: center;
    text-align: center;
    width: auto;
-  
+  text-shadow: black 0 15px 10px;
   
  }
  
  .carousel-caption h3{
    color: white;
+   font-size: 5em;
    width: 100%;
+   opacity: 1;
  }
  
  
  .carousel-caption a p{
    color: white;
+   font-size: 2em;
+   opacity: 1;
  }
  /* ---------------------------*/
 
  /*--------------------IPHONE CARD START--------------*/
-.cards-container{
+/*  .cards-container {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  position: relative;
+ 
+  width: 50%;
+  height: 100%;
+  opacity: 1;
+  border: solid 1px red;
+}
+
+.card:nth-child(1) {
+  position: absolute;
+  animation: image-switch 48s infinite;
+  width: 100%; /* Adjust size as needed */
+
+ /*  transition: transform 0.3s; */
+/*  z-index: 1;
+}
+/*
+.card:nth-child(2) {
+  position: absolute;
+  animation: image-switch 24s infinite;
+  width: 100%; /* Adjust size as needed */
+ /* opacity: 0.5;
+/*   transition: transform 0.3s; */
+ /* z-index: 2;
+}
+*/
+/*
+.card:nth-child(3) {
+  position: relative;
+  opacity: 0.5;
+  width: 100%; /* Adjust size as needed */
+/* 
+  transition: transform 0.3s; */
+ /* animation: image-switch 12s infinite;
+  z-index: 3;
+  
+} */
+/*--------------Gallery start------------- */
+.under-show{
+ 
+ 
+ 
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+
+
+}
+
+.image-gallery{
+  width: 100%;
+  background-color: grey;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  border: 2px red solid;
-width: 100%;
-height: 100%;
+  
 }
- .cards-inner{
-  width: 100%;
-  height: 100%;
-  border: 2px blue solid;
- }
 
- .cards{
+.gallery-container{
+  padding: 0%;
+  width: 100%;
   display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 100%;
  
-  border:  solid 2px rgb(0, 128, 17);
- }
 
- .card{
+}
 
-  background-color: yellow;
- }
+.gallery-inner-container{
+display: flex;
+flex-direction: column;
+width: 100%;
 
- .card img{
+}
+
+.gallery-inner-container .caption{
+  text-align: center;
+  
+}
+
+.gallery-inner-container img {
+  display: flex;
+ flex-direction: column;
   width: 100%;
-  height: 40vh;
+  padding: 0.5%;
+}
 
- }
+
+.gallery-container3 {
+  display: flex;
+ flex-direction: row;
+
+
+}
+
+.gallery-inner-container3{
+  display: flex;
+ flex-direction: column;
+  width: 100%;
+  padding: 0.5%;
+ 
+}
+
+.gallery-inner-container3 img{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+}
+
+.gallery-img-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+text-align: center;
+
+}
+
+@keyframes image-switch{
+
+  0%{
+    opacity: 1;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+
+}
+
+
 
  .news{
-  width: 10vw;
+  width: 5vw;
  
   background-color: red;
  }
