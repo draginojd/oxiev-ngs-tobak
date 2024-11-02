@@ -28,22 +28,22 @@ export const NavBar = () => {
 
         <div className="nav-links">
           <div className="nav-item">
-            <NavLink className="nav-link" to="/" activeClassName="active-link">
+            <NavLink className="nav-link" to="/" active="active-link">
               <h1>Hem</h1>
             </NavLink>
           </div>
           <div className="nav-item">
-            <NavLink className="nav-link" to="/about" activeClassName="active-link">
+            <NavLink className="nav-link" to="/about" active="active-link">
               <h1>Om oss</h1>
             </NavLink>
           </div>
           <div className="nav-item">
-            <NavLink className="nav-link" to="/contact" activeClassName="active-link">
+            <NavLink className="nav-link" to="/contact" active="active-link">
               <h1>Kontakt</h1>
             </NavLink>
           </div>
           <div className="nav-item">
-            <NavLink className="nav-link" to="/find-us" activeClassName="active-link">
+            <NavLink className="nav-link" to="/find-us" active="active-link">
               <h1>Hitta Butik</h1>
             </NavLink>
           </div>

@@ -1,4 +1,25 @@
+/* For the whole page */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  display: none;
+}
 
+/*
+::-webkit-scrollbar-track {
+  background: #0066ff; // Color of the track 
+} 
+
+::-webkit-scrollbar-thumb {
+  background: #888; // Color of the thumb 
+  background: #0066ff; // Color of the track 
+  border-radius: 10px; // Roundness of the thumb 
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the thumb on hover 
+
+} */
 
 .slide-in{
   position: fixed;
@@ -155,6 +176,8 @@ width: 100%;
   top: 0;
   background-color: rgb(36, 36, 36);
   color: white;
+  
+ 
 }
 
 
@@ -406,3 +429,14 @@ text-align: center;
   background-color: red;
  }
   /*--------------------IPHONE CARD END--------------*/
+
+    /*--------------------ABOUT-CONTAINER-START--------------*/
+
+    .about-container{
+      text-align: center;
+      color: white;
+      width: 100%;
+      
+    }
+
+    /*--------------------ABOUT-CONTAINER-END--------------*/

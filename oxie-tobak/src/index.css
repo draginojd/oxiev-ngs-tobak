@@ -10,6 +10,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 a {
@@ -26,6 +27,7 @@ body {
  margin: 0;
  padding: 0;
  background-color: rgb(38, 39, 39);
+ 
 }
 
 h1 {
