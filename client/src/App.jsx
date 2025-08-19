@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from '/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import {Routes, Route, useLocation} from "react-router-dom";
 import { AnimatePresence } from 'framer-motion';
