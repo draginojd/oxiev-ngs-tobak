@@ -7,6 +7,7 @@ import Services from './components/Services/Services'
 // About, Projects and Contact removed to match the live site structure
 import Products from './components/Products/Products'
 import News from './components/News/News'
+import Welcome from './components/Welcome/Welcome'
 import FindUs from './components/FindUs/FindUs'
 import Footer from './components/Footer/Footer'
 
@@ -21,6 +22,7 @@ function App() {
     <>
   <main>
   <Hero />
+  <Welcome />
   <Services />
   <Products />
   <News />
