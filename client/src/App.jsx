@@ -1,29 +1,34 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
-import {Routes, Route, useLocation} from "react-router-dom";
-import { AnimatePresence } from 'framer-motion';
 
-import NavBar from './components/NavBar';
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
-import FindUs from './components/FindUs';
+// Navigation removed per request
+import Hero from './components/Hero/Hero'
+import Services from './components/Services/Services'
+// About, Projects and Contact removed to match the live site structure
+import Products from './components/Products/Products'
+import News from './components/News/News'
+import FindUs from './components/FindUs/FindUs'
+import Footer from './components/Footer/Footer'
+
+const links = [
+  { href: '#home', label: 'Hem' },
+  { href: '#projects', label: 'Spela' },
+  { href: '#find-us', label: 'Hitta butik' },
+]
+
 function App() {
-  const location = useLocation();
-
   return (
     <>
-                    <NavBar />
-        <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-                <Route index element={<Home />}/>
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />}/>
-                <Route path="/find-us" element={<FindUs />}/>
-              </Routes>
-        </AnimatePresence>
+  <main>
+  <Hero />
+  <Services />
+  <Products />
+  <News />
+  <FindUs />
+      </main>
+      <Footer />
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

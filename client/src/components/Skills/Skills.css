@@ -1,0 +1,120 @@
+/* Skills Section Styles */
+.skills-section {
+  background: #191a23;
+  color: #e5e7ef;
+  padding: 4.5rem 0 3.5rem 0;
+  min-height: 70vh;
+}
+
+.skills-title {
+  text-align: center;
+  color: #a78bfa;
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 2.7rem;
+}
+
+.skills-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.skills-card {
+  background: #20202e;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: 1.5px solid #23243a;
+  padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+  min-width: 300px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.skills-card-title {
+  color: #a78bfa;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.skills-list-item {
+  background: #23243a;
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 1rem;
+  color: #e5e7ef;
+  font-size: 1.08rem;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+}
+
+.skills-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.skills-note {
+  text-align: center;
+  color: #b3b6d4;
+  font-size: 1.08rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 1000px) {
+  .skills-cards {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .skills-card {
+    min-width: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+.skills-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+}
+
+@media (max-width: 600px) {
+  .skills-section {
+    padding: 2.5rem 0 2rem 0;
+  }
+  .skills-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .skills-card {
+    padding: 1.2rem 0.7rem;
+  }
+  .skills-list-item {
+    font-size: 0.98rem;
+    padding: 0.6rem 0.5rem;
+  }
+  .skills-note {
+    font-size: 0.98rem;
+    margin-top: 1.2rem;
+   margin: 2rem;
+  }
+  .skills-cards{
+    width: 80%;
+  }
+}

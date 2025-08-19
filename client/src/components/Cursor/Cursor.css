@@ -1,0 +1,26 @@
+.custom-cursor{
+  position: fixed;
+  top: -2%;
+  left: -1%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(167,139,250,0.95);
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  mix-blend-mode: normal;
+  transition: width 150ms ease, height 150ms ease, background 150ms ease, opacity 150ms ease;
+  z-index: 9999;
+  opacity: 0;
+}
+
+.custom-cursor.cursor--hover{
+  width: 36px;
+  height: 36px;
+  background: rgba(167,139,250,0.15);
+  border: 1px solid rgba(167,139,250,0.9);
+}
+
+@media (max-width: 600px) {
+  .custom-cursor { display: none !important; }
+}

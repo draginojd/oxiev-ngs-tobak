@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+/* Hero Section Styles */
+
+.hero-section {
+  position: relative;
+  /* reduce hero height so it doesn't dominate the viewport */
+  min-height: 52vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* tobaksaffär hero image */
+  background: url('/hero-tobak.svg') center/cover no-repeat;
+  background-size: cover;
+  z-index: 0;
+  filter: saturate(0.98) contrast(0.92);
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* strong red overlay to match the reference site */
+  background: rgba(178, 34, 34, 0.65);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+  max-width: 1000px;
+  padding: 2rem;
+  margin: 0 auto;
+  text-shadow: 0 3px 20px rgba(0,0,0,0.6);
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.6rem;
+  line-height: 1.02;
+  letter-spacing: 0.2px;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.hero-title.typewriter-caret::after { display: none; }
+
+.hero-subtitle {
+  font-size: 0.98rem;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1.6rem;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 400;
+}
+
+.hero-section { padding-top: 0; }
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-btn {
+  background: #b71c1c; /* deep red CTA to match overlay */
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-btn:hover { background: #a50f0f; }
+
+.arrow { font-size: 1.3rem; }
+
+.hero-icon {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.hero-icon:hover { background: rgba(255,255,255,0.12); }
+
+@media (max-width: 900px) {
+  .hero-title { font-size: 2.6rem; }
+  .hero-content { padding: 0 1rem; text-align: center; width: 100%; }
+  .hero-btn { font-size: 0.95rem; }
+  .hero-section { min-height: 64vh; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.2rem; }
+  .hero-section { min-height: 56vh; }
+}

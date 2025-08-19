@@ -30,6 +30,16 @@ body {
  
 }
 
+/* helper: account for fixed nav height when scrolling to anchors */
+:target::before {
+  content: '';
+  display: block;
+  height: 84px; /* slightly larger than nav scroll threshold */
+  margin-top: -84px;
+}
+
+.container { max-width:1100px; margin:0 auto; padding:0 1rem; }
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
