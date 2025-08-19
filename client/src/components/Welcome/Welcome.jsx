@@ -10,9 +10,29 @@ export default function Welcome(){
 
         <div className="welcome-grid">
           <div className="welcome-item">
-            <div className="welcome-icon" aria-hidden>
-              {/* Use the ATG QR image from public for reliable QR scanning */}
-              <img src="/qr-atg.svg" alt="QR ATG" />
+            <div className="welcome-icon qr" aria-hidden>
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <rect width="24" height="24" rx="2" fill="none" />
+                {/* white QR modules to contrast the dark red circle */}
+                <rect x="2" y="2" width="6" height="6" fill="currentColor" />
+                <rect x="3.6" y="3.6" width="2.8" height="2.8" fill="currentColor" />
+
+                <rect x="15" y="2" width="6" height="6" fill="currentColor" />
+                <rect x="16.6" y="3.6" width="2.8" height="2.8" fill="currentColor" />
+
+                <rect x="2" y="15" width="6" height="6" fill="currentColor" />
+                <rect x="3.6" y="16.6" width="2.8" height="2.8" fill="currentColor" />
+
+                {/* inner modules */}
+                <rect x="9" y="6" width="2" height="2" fill="currentColor" />
+                <rect x="12" y="6" width="2" height="2" fill="currentColor" />
+                <rect x="9" y="9" width="2" height="2" fill="currentColor" />
+                <rect x="14" y="10" width="2" height="2" fill="currentColor" />
+                <rect x="11" y="12" width="2" height="2" fill="currentColor" />
+                <rect x="7" y="14" width="2" height="2" fill="currentColor" />
+                <rect x="13" y="15" width="2" height="2" fill="currentColor" />
+                <rect x="17" y="17" width="2" height="2" fill="currentColor" />
+              </svg>
             </div>
             <h4>Enkel inloggning</h4>
             <p className="small">QR-koder för snabb åtkomst till dina spelkonton</p>

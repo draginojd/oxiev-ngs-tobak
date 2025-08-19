@@ -45,7 +45,13 @@
 	box-shadow: 0 6px 18px rgba(183,28,28,0.04);
 	border: 1px solid rgba(183,28,28,0.06);
 }
-.welcome-icon img{width:46px;height:46px;object-fit:contain}
+.welcome-icon.qr{
+	/* match the pale pink circular style used by other icons */
+	background: rgba(183,28,28,0.06);
+	color: #b71c1c; /* dark red icon */
+	box-shadow: 0 6px 18px rgba(183,28,28,0.04);
+	border: 1px solid rgba(183,28,28,0.06);
+}
 .welcome-icon .codicon{font-size:22px}
 .welcome-item h4{font-size:1rem;margin:0 0 .35rem;font-weight:700;color:#1f1f1f}
 .welcome-item .small{font-size:0.95rem;color:#7a7a7a;margin:0;line-height:1.4}

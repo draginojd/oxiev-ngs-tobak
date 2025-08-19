@@ -60,7 +60,13 @@ export default function Products() {
               'Vatten och sportdrycker',
             ]}
             icon={(
-              <i className="codicon codicon-beaker" aria-hidden></i>
+              <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                {/* soda can: wider dark-red can with white wave */}
+                <rect x="7" y="3" width="10" height="2" rx="0.6" fill="#b71c1c" />
+                <rect x="6" y="5" width="12" height="13" rx="1.6" fill="#b71c1c" />
+                <path d="M7 9c1-1 4-1 6 0s3 1 3 1v1s-1-1.2-3-1.2c-1.9 0-3.4 1-6 1.2v-1z" fill="#fff" opacity="0.98"/>
+                <rect x="10" y="7" width="4" height="2" rx="0.3" fill="#fff" opacity="0.98"/>
+              </svg>
             )}
           />
         </div>
