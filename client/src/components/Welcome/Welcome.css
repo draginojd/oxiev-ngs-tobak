@@ -58,7 +58,7 @@
 
 /* Responsive: stack items on smaller screens and scale icons */
 @media (max-width:900px){
-	.welcome-grid{flex-direction:column;gap:1.4rem;padding-top:0}
+	.welcome-grid{align-items:center;flex-direction:column;gap:1.4rem;padding-top:0}
 	.welcome-icon{width:64px;height:64px}
 	.welcome-title{font-size:1.6rem}
 }
