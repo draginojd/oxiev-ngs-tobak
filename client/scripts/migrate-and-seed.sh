@@ -7,39 +7,37 @@ set -euo pipefail
 
 if [ -z "${DATABASE_URL:-}" ]; then
   echo "DATABASE_URL is not set. Export it and re-run. Example:" >&2
-  echo "  export DATABASE_URL='postgresql://postgres:changeme@127.0.0.1:5432/oxievangs_tobak'"
+  echo "  export DATABASE_URL='postgresql://postgres:IWPeyESzUVx00Ks@127.0.0.1:5432/oxievangs_tobak'"
   exit 1
 fi
 
 echo "Installing Node deps (if needed)..."
 if [ -f package.json ]; then
-  npm install --no-audit --no-fund >/dev/null 2>&1 || true
-fi
+#!/bin/bash
+# migrate-and-seed.sh
+# Runs prisma push, optional mongo migration, and seeds for Postgres
+
+set -e # exit on any error
+
+echo "Installing Node deps (if needed)..."
+npm install --quiet
 
 echo "Generating Prisma client and pushing schema..."
-if command -v npx >/dev/null 2>&1; then
-  npx prisma generate || true
-  # use db push for a safe, immediate schema push in dev
-  npx prisma db push || true
-else
-  echo "npx not found; ensure Node.js is installed and try running prisma commands manually." >&2
-fi
+npx prisma generate
+# Using --accept-data-loss is fine for dev, be careful in prod
+npx prisma db push --accept-data-loss
 
-# If MONGO_URI exists, run migration script first
-if [ -n "${MONGO_URI:-}" ]; then
-  echo "MONGO_URI detected; migrating data from Mongo -> Postgres..."
+if [ -n "$MONGO_URI" ]; then
+  echo "MONGO_URI is set. Migrating data from Mongo to Postgres..."
   node ./scripts/migrate-mongo-to-postgres.cjs
 else
   echo "No MONGO_URI set; skipping Mongo->Postgres migration."
 fi
 
-# Seed admin (if script exists) and content
-if [ -f ./scripts/seed-postgres-admin.cjs ]; then
-  echo "Seeding admin user into Postgres..."
-  node ./scripts/seed-postgres-admin.cjs || true
-fi
+echo "Seeding admin user into Postgres..."
+node ./scripts/seed-postgres-admin.cjs
 
 echo "Seeding news & campaigns into Postgres..."
-node ./scripts/seed-content.cjs || true
+node ./scripts/seed-content.cjs
 
-echo "Done. Verify with: curl -s http://localhost:4000/api/admin/news | jq '.'  (or run the check script)"
+echo "Done. Verify with: curl -s http://localhost:4000/api/admin/news | jq '.'"
