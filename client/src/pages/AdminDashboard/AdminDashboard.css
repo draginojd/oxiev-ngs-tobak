@@ -1,0 +1,54 @@
+/* Page background and base typography */
+.admin-dashboard{
+	padding:28px;
+	font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
+	color:#111827; /* dark gray */
+	min-height:100vh;
+	background-color:#f3f4f6; /* light page background */
+}
+
+/* Top header */
+.admin-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.admin-top h2{margin:0;font-size:1.5rem;font-weight:600}
+.subtitle{color:#6b7280;font-size:0.95rem}
+.top-right{display:flex;align-items:center}
+.btn.small{background:#fff;border:1px solid rgba(17,24,39,0.06);padding:8px 12px;border-radius:8px;margin-left:8px;color:#111827}
+.logout{margin-left:12px;color:#374151;text-decoration:none}
+
+/* Feature quick cards */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}
+.feature{background:#ffffff;padding:20px;border-radius:12px;border:1px solid rgba(17,24,39,0.06);display:flex;flex-direction:column;justify-content:center;box-shadow:none}
+.feature strong{font-size:1rem;color:#111827}
+.feature span{color:#6b7280;font-size:0.95rem;margin-top:8px}
+
+/* Stats row */
+.stats-row{display:flex;gap:16px;margin-bottom:18px}
+.stat{background:#ffffff;padding:20px;border-radius:12px;flex:1;border:1px solid rgba(17,24,39,0.06)}
+.stat-title{color:#6b7280;font-size:0.95rem}
+.stat-value{font-size:1.6rem;font-weight:700;margin-top:8px;color:#111827}
+
+/* Lower area: latest news and quick links */
+.lower{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:6px}
+.latest{background:#ffffff;padding:20px;border-radius:12px;border:1px solid rgba(17,24,39,0.04)}
+.latest h3{margin:0 0 6px;font-size:1.125rem}
+.muted{color:#6b7280;font-size:0.95rem;margin-bottom:12px}
+.news-list{list-style:none;padding:0;margin:0}
+
+/* News item */
+.news-list li{padding:14px;border-radius:10px;background:#ffffff;border:1px solid rgba(17,24,39,0.04);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.news-title{font-weight:600;color:#111827}
+.news-meta{color:#6b7280;font-size:0.9rem}
+.badge{padding:6px 10px;border-radius:999px;font-size:0.8rem;margin-left:8px;font-weight:600}
+.badge.active{background:#ef4444;color:#ffffff;border:none} /* red pill */
+.badge.draft{background:#eef2ff;color:#374151} /* soft muted for drafts */
+
+.quick{background:#ffffff;padding:20px;border-radius:12px;border:1px solid rgba(17,24,39,0.04)}
+.quick h3{margin:0;font-size:1.125rem}
+.quick-list{list-style:none;padding:0;margin-top:12px}
+.quick-list li{padding:12px 0;border-bottom:1px dashed rgba(17,24,39,0.04);color:#374151}
+
+/* small responsive tweaks */
+@media (max-width:900px){
+	.features{grid-template-columns:repeat(2,1fr)}
+	.lower{grid-template-columns:1fr}
+}
