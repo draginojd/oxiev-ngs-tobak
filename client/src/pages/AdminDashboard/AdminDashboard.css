@@ -1,10 +1,18 @@
 /* Page background and base typography */
+html,body{height:100%;margin:0}
+*,*::before,*::after{box-sizing:border-box}
 .admin-dashboard{
-	padding:28px;
-	font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
-	color:#111827; /* dark gray */
-	min-height:100vh;
-	background-color:#f3f4f6; /* light page background */
+		padding:28px;
+		font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
+		color:#111827; /* dark gray */
+		min-height:100vh;
+		background-color:#f3f4f6; /* light page background */
+}
+
+/* Disable page scroll on desktop/laptop */
+@media (min-width:900px){
+	html,body{overflow:hidden}
+	.admin-dashboard{height:100vh;overflow:hidden}
 }
 
 /* Top header */
