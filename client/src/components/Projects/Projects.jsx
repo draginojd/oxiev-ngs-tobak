@@ -51,7 +51,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80',
     description: 'Cinema/movie booking website with seat selection, showtimes, payment integration, and an admin dashboard. Built as a full-stack app with a React frontend and Express/Node backend.',
     tags: ['Frontend', 'Backend'],
-    tech: ['React', 'Javascript', 'Express', 'Node.js', 'MongoDB', "JSON"],
+  tech: ['React', 'Javascript', 'Express', 'Node.js', "JSON"],
     code: '#',
     demo: '#',
     filter: ['frontend', 'backend'],

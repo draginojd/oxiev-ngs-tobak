@@ -27,8 +27,7 @@ const skillsData = [
   {
     title: 'Database & Tools',
     items: [
-      'SQL / MySQL',
-      'MongoDB',
+  'SQL / MySQL',
       'Git / GitHub Actions',
       "GitHub CoPilot",
       'Monitoring & Logging',

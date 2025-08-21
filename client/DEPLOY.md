@@ -115,7 +115,7 @@ sudo journalctl -u oxievangs-tobak.service -f
 - Keep secrets out of git; use `/etc/oxie.env` or a secret manager.
 
 7) Alternatives & quick options
-- If you previously used Mongo and want to migrate data to Postgres, use the migration script `scripts/migrate-mongo-to-postgres.cjs` before removing Mongo. (Note: that script may be removed in this repo if migration is complete.)
+- If you previously used Mongo and want to migrate data to Postgres, do that migration safely before removing Mongo from your environment. (Migration helper scripts were removed from this repo once migration was complete.)
 - Run Node process manager: `pm2 start server.cjs --name oxie --env production` (install pm2 globally: `npm i -g pm2`).
 
 - 8) Troubleshooting
