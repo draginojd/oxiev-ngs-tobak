@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ignore environment files and secrets
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+
+# Ignore build artifacts and local overrides
+.cache
+.parcel-cache
+.turbo
+.next
