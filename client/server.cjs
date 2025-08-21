@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 
@@ -9,19 +8,7 @@ app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 
-// Mongo configuration and single client instance
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017';
-const DB_NAME = process.env.MONGO_DB || 'oxievangs_tobak';
-let db = null;
-const mongoClient = new MongoClient(MONGO_URI, { serverSelectionTimeoutMS: 2000 });
-
-// Try to connect once at startup (non-fatal)
-mongoClient.connect().then(() => {
-    db = mongoClient.db(DB_NAME);
-    console.log('Connected to MongoDB');
-}).catch(err => {
-    console.warn('Initial MongoDB connect failed (continuing with fallback):', err && err.message ? err.message : err);
-});
+// MongoDB support removed. App uses Postgres (via DATABASE_URL) or falls back to configured env values.
 
 // Postgres configuration (optional)
 const DATABASE_URL = process.env.DATABASE_URL || process.env.PG_URI || null;
@@ -70,8 +57,7 @@ app.listen(PORT, () => {
 });
 
 // Admin login endpoint
-// Tries to validate against a MongoDB `admins` collection if MONGO_URI is set and reachable.
-// Falls back to a configured fallback admin (use env FALLBACK_ADMIN_EMAIL and FALLBACK_ADMIN_PASSWORD).
+// Validates against Postgres `admins` table when available. Falls back to configured admin credentials.
 app.post('/api/admin/login', async (req, res) => {
     const { email, password } = req.body || {};
     if (!email || !password) return res.status(400).send({ message: 'Email and password required' });
@@ -93,23 +79,6 @@ app.post('/api/admin/login', async (req, res) => {
         }
     } catch (err) {
         console.warn('Postgres admin lookup failed:', err && err.message ? err.message : err);
-        // fallthrough to mongo/fallback
-    }
-
-    // Then try MongoDB (use shared client when available)
-    try {
-        if (db) {
-            const admins = db.collection('admins');
-            const admin = await admins.findOne({ email: email });
-            if (admin && admin.passwordHash) {
-                const ok = await bcrypt.compare(password, admin.passwordHash);
-                if (ok) return res.send({ message: 'ok' });
-                return res.status(401).send({ message: 'Ogiltiga inloggningsuppgifter' });
-            }
-        }
-    } catch (err) {
-        console.warn('MongoDB admin lookup failed:', err && err.message ? err.message : err);
-        // fallthrough to fallback
     }
 
     // Fallback admin (use env to override)
@@ -137,11 +106,8 @@ app.post('/api/admin/login', async (req, res) => {
                 }
             }
 
-            if (!db) return res.status(200).send({ news: 0, campaigns: 0, admins: 0 });
-            const newsCount = await db.collection('news').countDocuments();
-            const campaignsCount = await db.collection('campaigns').countDocuments();
-            const adminsCount = await db.collection('admins').countDocuments();
-            return res.send({ news: newsCount, campaigns: campaignsCount, admins: adminsCount });
+            // No Postgres available; return zeros.
+            return res.status(200).send({ news: 0, campaigns: 0, admins: 0 });
         } catch (err) {
             console.error('Stats error', err);
             return res.status(500).send({ message: 'Error' });
@@ -161,9 +127,8 @@ app.post('/api/admin/login', async (req, res) => {
                 }
             }
 
-            if (!db) return res.send([]);
-            const items = await db.collection('news').find().sort({ createdAt: -1 }).limit(10).toArray();
-            return res.send(items.map(i => ({ title: i.title, date: i.createdAt, status: i.status || 'active' })));
+            // No Postgres available; return empty list rather than attempting MongoDB.
+            return res.send([]);
         } catch (err) {
             console.error('News fetch error', err);
             return res.status(500).send([]);
@@ -183,9 +148,8 @@ app.post('/api/admin/login', async (req, res) => {
                 }
             }
 
-            if (!db) return res.send([]);
-            const items = await db.collection('campaigns').find().sort({ createdAt: -1 }).limit(10).toArray();
-            return res.send(items.map(i => ({ title: i.name || i.title, date: i.createdAt, status: i.active ? 'active' : (i.status || 'inactive') })));
+            // No Postgres available; return empty list rather than attempting MongoDB.
+            return res.send([]);
         } catch (err) {
             console.error('Campaigns fetch error', err);
             return res.status(500).send([]);

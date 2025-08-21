@@ -1,13 +1,11 @@
 // seed-content.cjs
 // Seeds example news and campaigns for the dashboard
-// Usage: set DATABASE_URL or MONGO_URI appropriately and run:
+// Usage: set DATABASE_URL and run:
 //   node scripts/seed-content.cjs
 
 const { Pool } = require('pg')
-const { MongoClient } = require('mongodb')
 
 const DATABASE_URL = process.env.DATABASE_URL || null
-const MONGO_URI = process.env.MONGO_URI || null
 
 const newsItems = [
   {
@@ -92,38 +90,15 @@ async function seedPostgres(){
   }
 }
 
-async function seedMongo(){
-  const client = new MongoClient(MONGO_URI)
-  try{
-    await client.connect()
-    const db = client.db(process.env.MONGO_DB || 'oxievangs_tobak')
-    const ncol = db.collection('news')
-    const ccol = db.collection('campaigns')
-    for(const n of newsItems){
-      await ncol.updateOne({ title: n.title }, { $set: { title: n.title, content: n.content, createdAt: new Date(n.date), status: n.status } }, { upsert: true })
-    }
-    for(const c of campaigns){
-      await ccol.updateOne({ name: c.name }, { $set: { name: c.name, description: c.description, createdAt: new Date(c.date), active: c.active } }, { upsert: true })
-    }
-    console.log('Mongo seed complete')
-  }catch(err){
-    console.error('Mongo seed failed', err)
-  }finally{
-    await client.close()
-  }
-}
+
 
 async function main(){
-  if (DATABASE_URL){
-    console.log('Seeding Postgres...')
-    await seedPostgres()
-  } else if (MONGO_URI){
-    console.log('Seeding Mongo...')
-    await seedMongo()
-  } else {
-    console.error('No DATABASE_URL or MONGO_URI provided. Set one and retry.')
+  if (!DATABASE_URL) {
+    console.error('DATABASE_URL is required. Set DATABASE_URL and re-run to seed Postgres.')
     process.exit(1)
   }
+  console.log('Seeding Postgres...')
+  await seedPostgres()
 }
 
 main()

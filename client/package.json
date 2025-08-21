@@ -4,17 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "server": "node server.cjs",
+    "server": "node server.cjs",
     "client": "vite",
     "dev": "npm run client && npm run server",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-  "seed:admins": "node scripts/seed-admins.cjs",
-  "seed:postgres": "node scripts/seed-postgres-admin.cjs",
-  "prisma:generate": "prisma generate",
-  "prisma:migrate": "prisma migrate dev --name init",
-  "start:pm2": "pm2 start ecosystem.config.js"
+    "seed:postgres": "node scripts/seed-postgres-admin.cjs",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "start:pm2": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
   "pg": "^8.11.0",
@@ -23,8 +22,7 @@
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "framer-motion": "^11.11.9",
-    "mongodb": "^6.18.0",
+  "framer-motion": "^11.11.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",

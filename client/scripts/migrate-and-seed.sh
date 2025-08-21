@@ -27,13 +27,6 @@ npx prisma generate
 # Using --accept-data-loss is fine for dev, be careful in prod
 npx prisma db push --accept-data-loss
 
-if [ -n "$MONGO_URI" ]; then
-  echo "MONGO_URI is set. Migrating data from Mongo to Postgres..."
-  node ./scripts/migrate-mongo-to-postgres.cjs
-else
-  echo "No MONGO_URI set; skipping Mongo->Postgres migration."
-fi
-
 echo "Seeding admin user into Postgres..."
 node ./scripts/seed-postgres-admin.cjs
 

@@ -1,13 +1,11 @@
 // check-content.cjs
 // Checks whether the three dashboard items exist in the database.
-// Usage: set DATABASE_URL or MONGO_URI and run:
+// Usage: set DATABASE_URL and run:
 //   node scripts/check-content.cjs
 
 const { Pool } = require('pg')
-const { MongoClient } = require('mongodb')
 
 const DATABASE_URL = process.env.DATABASE_URL || null
-const MONGO_URI = process.env.MONGO_URI || null
 
 const newsTitles = [
   'Nya öppettider från 1 januari',
@@ -42,40 +40,14 @@ async function checkPostgres(){
   }
 }
 
-async function checkMongo(){
-  const client = new MongoClient(MONGO_URI)
-  try{
-    await client.connect()
-    console.log('Checking MongoDB...')
-    const db = client.db(process.env.MONGO_DB || 'oxievangs_tobak')
-    const ncol = db.collection('news')
-    const ccol = db.collection('campaigns')
-    for(const t of newsTitles){
-      const doc = await ncol.findOne({ title: t })
-      if(doc) console.log(`FOUND news: "${t}" (id=${doc._id}, createdAt=${doc.createdAt || doc.date || 'N/A'})`)
-      else console.log(`MISSING news: "${t}"`)
-    }
-    const cdoc = await ccol.findOne({ name: campaignName })
-    if(cdoc) console.log(`FOUND campaign: "${campaignName}" (id=${cdoc._id}, createdAt=${cdoc.createdAt || cdoc.date || 'N/A'})`)
-    else console.log(`MISSING campaign: "${campaignName}"`)
-  }catch(err){
-    console.error('Mongo check failed:', err.message)
-  }finally{
-    await client.close()
-  }
-}
-
 async function main(){
-  if(DATABASE_URL){
-    await checkPostgres()
-  } else if(MONGO_URI){
-    await checkMongo()
-  } else {
-    console.error('No DATABASE_URL or MONGO_URI provided. Set one and re-run.')
+  if(!DATABASE_URL){
+    console.error('DATABASE_URL is required. Set DATABASE_URL and re-run.')
     console.error('Example (PowerShell):')
     console.error("$env:DATABASE_URL='postgresql://user:pass@localhost:5432/dbname' ; node scripts/check-content.cjs")
     process.exit(1)
   }
+  await checkPostgres()
 }
 
 main()

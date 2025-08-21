@@ -12,17 +12,18 @@ sudo apt install -y build-essential curl git nginx
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
-# Install MongoDB (community) - or use MongoDB Atlas (see note below)
-# For Ubuntu 22.04+ the official docs are here: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
-# Quick install (Ubuntu 22.04/24.04):
-wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -sc)/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-sudo apt update
-sudo apt install -y mongodb-org
-sudo systemctl enable --now mongod
-
-# Verify MongoDB running
-sudo systemctl status mongod
+# Database: Postgres (recommended)
+# This project uses Postgres (Prisma). Install and run Postgres or use a managed Postgres provider.
+# Example quickstart (Docker):
+```
+sudo mkdir -p /srv/pg-data
+sudo chown 1000:1000 /srv/pg-data
+sudo docker run -d --name oxie-postgres \
+  -e POSTGRES_PASSWORD=changeme \
+  -p 5432:5432 \
+  -v /srv/pg-data:/var/lib/postgresql/data \
+  postgres:15
+```
 
 2) Clone app and install deps
 
@@ -32,14 +33,11 @@ sudo git clone <your-repo-url> oxievangs-tobak
 cd oxievangs-tobak/client
 sudo npm ci
 
-3) Seed admins collection (adds HOST)
+3) Seed Postgres & admin user
 
-# Use the repository-local seed script. By default it writes to mongodb://127.0.0.1:27017 and DB name oxievangs_tobak
-# You should set a secure admin password via ADMIN_PASSWORD env var when running the seed.
-# Example (replace with a secure password):
-ADMIN_PASSWORD='S3cureP@ssw0rd' MONGO_URI='mongodb://127.0.0.1:27017' node scripts/seed-admins.cjs
-
-# If using MongoDB Atlas, set MONGO_URI to the full connection string and run the same command.
+# Set a secure admin password via ADMIN_PASSWORD env var when running the seed.
+# Example (replace with secure values):
+DATABASE_URL='postgresql://postgres:changeme@127.0.0.1:5432/oxievangs_tobak' ADMIN_PASSWORD='S3cureP@ssw0rd' node scripts/seed-postgres-admin.cjs
 
 4) Build client and serve static files with nginx
 
@@ -82,10 +80,9 @@ sudo nginx -t && sudo systemctl reload nginx
 
 5) Run server.cjs as a systemd service (Node API)
 
-# Create an env file
+# Create an env file (DATABASE_URL is required)
 sudo tee /etc/oxie.env <<'ENV'
-MONGO_URI='mongodb://127.0.0.1:27017'
-MONGO_DB='oxievangs_tobak'
+DATABASE_URL='postgresql://postgres:changeme@127.0.0.1:5432/oxievangs_tobak'
 PORT=4000
 ENV
 
@@ -114,15 +111,15 @@ sudo journalctl -u oxievangs-tobak.service -f
 
 6) Security notes
 - Change the seeded admin password immediately after first login. The seed script prints the ADMIN_PASSWORD used when run.
-- Consider using MongoDB Atlas or bind MongoDB to localhost and firewall the server.
+-- Use a managed Postgres provider or run Postgres locally in Docker; secure access with firewall rules.
 - Keep secrets out of git; use `/etc/oxie.env` or a secret manager.
 
 7) Alternatives & quick options
-- Use MongoDB Atlas: create a free cluster, add IP whitelist and user, set MONGO_URI to the connection string. Run the seed script with that MONGO_URI.
+- If you previously used Mongo and want to migrate data to Postgres, use the migration script `scripts/migrate-mongo-to-postgres.cjs` before removing Mongo. (Note: that script may be removed in this repo if migration is complete.)
 - Run Node process manager: `pm2 start server.cjs --name oxie --env production` (install pm2 globally: `npm i -g pm2`).
 
-8) Troubleshooting
-- If seed script fails: ensure MongoDB is reachable (try `mongo --eval "db.stats()"`) and check firewall.
+- 8) Troubleshooting
+- If seed script fails: ensure Postgres is reachable (check `pg_isready` or Docker logs) and check firewall.
 - If nginx returns 404 for client routes, ensure `try_files` fallback to `index.html` is present.
 
 ---

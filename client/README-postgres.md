@@ -6,32 +6,17 @@ To add the three example items used in the admin dashboard "Senaste Nyheter":
 - Veckans speltips
 - Julkampanj - 15% rabatt på godis
 
-Run the general seeder (Postgres or Mongo):
+Run the general seeder (Postgres):
 
 ```powershell
 # For Postgres (uses DATABASE_URL from .env)
-node scripts/seed-content.cjs
-
-# For Mongo (set MONGO_URI and optionally MONGO_DB)
-$env:MONGO_URI = 'mongodb://localhost:27017'
-$env:MONGO_DB = 'oxievangs_tobak'
 node scripts/seed-content.cjs
 ```
  
 Mongo -> Postgres migration
 ---------------------------
 
-If you have existing content in Mongo and want to move to Postgres, use the migration script:
-
-```powershell
-# set both envs (example)
-$env:MONGO_URI = 'mongodb://127.0.0.1:27017'
-$env:MONGO_DB = 'oxievangs_tobak'
-$env:DATABASE_URL = 'postgresql://postgres:changeme@127.0.0.1:5432/postgres'
-node scripts/migrate-mongo-to-postgres.cjs
-```
-
-The script will upsert all documents from `news` and `campaigns` collections into Postgres tables and print each upserted row.
+If you previously used Mongo and need to migrate data to Postgres, you may have a migration script. If it's not present in this repo, extract data from your Mongo instance and insert into Postgres using a custom script or manual export/import.
 Postgres quickstart (development)
 
 1. Start Postgres in Docker
