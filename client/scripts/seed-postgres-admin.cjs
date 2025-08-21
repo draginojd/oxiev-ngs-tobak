@@ -1,7 +1,12 @@
 // seed-postgres-admin.cjs
 // Usage:
 // npm install pg bcryptjs
-// DATABASE_URL=postgresql://postgres:changeme@127.0.0.1:5432/postgres ADMIN_EMAIL=oxietobak@gmail.com ADMIN_PASSWORD='IWPeyESzUVx00Ks' node scripts/seed-postgres-admin.cjs
+// Set DATABASE_URL and ADMIN_PASSWORD in the environment before running.
+// Example (interactive, do NOT commit the password):
+//   read -s -p "Admin password: " ADMIN_PASSWORD; echo
+//   export ADMIN_PASSWORD
+//   export DATABASE_URL='postgresql://postgres:changeme@127.0.0.1:5432/postgres'
+//   node scripts/seed-postgres-admin.cjs
 
 const { Pool } = require('pg')
 const bcrypt = require('bcryptjs')
@@ -16,7 +21,12 @@ const DATABASE_URL = process.env.DATABASE_URL || (() => {
 })()
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'oxietobak@gmail.com'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'IWPeyESzUVx00Ks'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
+
+if (!ADMIN_PASSWORD) {
+  console.error('FEL: ADMIN_PASSWORD är inte satt. Sätt ADMIN_PASSWORD i miljön och kör igen (använd read -s för interaktiv input).')
+  process.exit(1)
+}
 
 async function main(){
   const pool = new Pool({ connectionString: DATABASE_URL })

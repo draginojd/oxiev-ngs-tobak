@@ -9,9 +9,10 @@ html,body{height:100%;margin:0}
 		background-color:#f3f4f6; /* light page background */
 }
 
-/* Disable page scroll on desktop/laptop */
+/* Disable page scroll on desktop/laptop only when admin view is active */
 @media (min-width:900px){
-	html,body{overflow:hidden}
+	/* class is toggled by the AdminDashboard component */
+	html.admin-no-scroll, body.admin-no-scroll{overflow:hidden}
 	.admin-dashboard{height:100vh;overflow:hidden}
 }
 

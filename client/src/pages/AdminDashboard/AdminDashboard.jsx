@@ -8,6 +8,11 @@ export default function AdminDashboard(){
 
   useEffect(() => {
     let mounted = true
+    // Prevent page scroll on desktop when admin dashboard is mounted
+    try {
+      document.documentElement.classList.add('admin-no-scroll')
+      document.body.classList.add('admin-no-scroll')
+    } catch (e) {}
     async function load() {
       try {
         const s = await fetch('/api/admin/stats').then(r => r.json())
@@ -28,7 +33,13 @@ export default function AdminDashboard(){
       } catch (e) {}
     }
     load()
-    return () => { mounted = false }
+    return () => {
+      mounted = false
+      try {
+        document.documentElement.classList.remove('admin-no-scroll')
+        document.body.classList.remove('admin-no-scroll')
+      } catch (e) {}
+    }
   }, [])
 
   return (
