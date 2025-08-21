@@ -20,6 +20,17 @@
 .feature{background:#ffffff;padding:20px;border-radius:12px;border:1px solid rgba(17,24,39,0.06);display:flex;flex-direction:column;justify-content:center;box-shadow:none}
 .feature strong{font-size:1rem;color:#111827}
 .feature span{color:#6b7280;font-size:0.95rem;margin-top:8px}
+.feature-icon{width:36px;height:36px;border-radius:8px;background:#f7f7fb;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.feature svg{opacity:0.9}
+
+.feature.news{
+    width: auto;
+}
+
+.feature.news .feature-icon{background:linear-gradient(180deg,#fff6f6,#fffafa);color:#ef4444}
+.feature.users .feature-icon{background:linear-gradient(180deg,#f5f3ff,#fbf8ff);color:#7c3aed}
+.feature.campaigns .feature-icon{background:linear-gradient(180deg,#f0fdf4,#f7fff6);color:#16a34a}
+.feature.schedule .feature-icon{background:linear-gradient(180deg,#fff7ed,#fffbf7);color:#ea580c}
 
 /* Stats row */
 .stats-row{display:flex;gap:16px;margin-bottom:18px}
@@ -34,13 +45,32 @@
 .muted{color:#6b7280;font-size:0.95rem;margin-bottom:12px}
 .news-list{list-style:none;padding:0;margin:0}
 
-/* News item */
-.news-list li{padding:14px;border-radius:10px;background:#ffffff;border:1px solid rgba(17,24,39,0.04);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.news-title{font-weight:600;color:#111827}
-.news-meta{color:#6b7280;font-size:0.9rem}
+/* News item layout that matches reference: left accent bar and inner white card */
+.news-item{position:relative;margin-bottom:10px;padding-left:14px}
+.news-item::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:6px;border-radius:6px;background:linear-gradient(180deg,#ef4444,#b91c1c)}
+.news-item.list-mode{padding-left:0}
+.news-item.list-mode::before{display:none}
+.news-card-body{background:#ffffff;border-radius:8px;padding:12px 14px;margin-left:12px;border:1px solid rgba(17,24,39,0.04);display:flex;justify-content:space-between;align-items:flex-start}
+.news-card-body.list-mode{margin-left:0;padding:10px 14px;align-items:center}
+.news-head{display:flex;align-items:center;justify-content:space-between;margin-left:12px}
+.news-head .news-title{font-weight:700;color:#111827;font-size:1rem}
+.news-head-right{display:flex;align-items:center}
+.news-content{color:#374151;margin:0;max-width:75%}
+.news-card-right{display:flex;flex-direction:row;align-items:center;gap:8px}
+.news-card-title{font-weight:600;color:#111827;margin-bottom:0}
+.news-item.list-mode .news-meta{color:#6b7280;font-size:0.9rem;margin-left:0;margin-top:8px;padding-left:4px}
 .badge{padding:6px 10px;border-radius:999px;font-size:0.8rem;margin-left:8px;font-weight:600}
-.badge.active{background:#ef4444;color:#ffffff;border:none} /* red pill */
-.badge.draft{background:#eef2ff;color:#374151} /* soft muted for drafts */
+.badge.active{background:#ef4444;color:#ffffff;border:none}
+.badge.draft{background:#eef2ff;color:#374151}
+
+/* Tag pill for news type */
+.pill{padding:6px 10px;border-radius:999px;font-size:0.75rem;margin-left:8px;font-weight:600;border:1px solid rgba(0,0,0,0.04)}
+.news-card-body.list-mode .pill{padding:4px 8px;font-size:0.72rem}
+.pill.nyhet{background:#fff0f1;color:#b91c1c;border-color:#ffdddd}
+.pill.tips{background:#fff7ed;color:#92400e;border-color:#ffedd5}
+.pill.kampanj{background:#fdf2f8;color:#831843;border-color:#fde8f6}
+
+.news-content{color:#374151;margin-top:8px;margin-bottom:6px}
 
 .quick{background:#ffffff;padding:20px;border-radius:12px;border:1px solid rgba(17,24,39,0.04)}
 .quick h3{margin:0;font-size:1.125rem}

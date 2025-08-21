@@ -45,10 +45,30 @@ export default function AdminDashboard(){
       </div>
 
       <div className="features">
-        <div className="feature"> <strong>Hantera Nyheter</strong><span>Lägg till, redigera nyheter</span></div>
-        <div className="feature"> <strong>Användare</strong><span>Hantera admin-konton</span></div>
-        <div className="feature"> <strong>Kampanjer</strong><span>Skapa erbjudanden</span></div>
-        <div className="feature"> <strong>Schemalägg</strong><span>Planera innehåll</span></div>
+        <div className="feature news"> 
+          <div className="feature-icon" aria-hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="6" rx="1" stroke="currentColor" strokeWidth="1.2"/><rect x="3" y="14" width="18" height="6" rx="1" stroke="currentColor" strokeWidth="1.2"/></svg>
+          </div>
+          <strong>Hantera Nyheter</strong><span>Lägg till, redigera nyheter</span>
+        </div>
+        <div className="feature users"> 
+          <div className="feature-icon" aria-hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" strokeWidth="1.2"/></svg>
+          </div>
+          <strong>Användare</strong><span>Hantera admin-konton</span>
+        </div>
+        <div className="feature campaigns"> 
+          <div className="feature-icon" aria-hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" strokeWidth="1.6"/><path d="M6 6h12v12H6z" stroke="currentColor" strokeWidth="1.2"/></svg>
+          </div>
+          <strong>Kampanjer</strong><span>Skapa erbjudanden</span>
+        </div>
+        <div className="feature schedule"> 
+          <div className="feature-icon" aria-hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 8h10" stroke="currentColor" strokeWidth="1.2"/><path d="M7 12h10" stroke="currentColor" strokeWidth="1.2"/><path d="M7 16h6" stroke="currentColor" strokeWidth="1.2"/></svg>
+          </div>
+          <strong>Schemalägg</strong><span>Planera innehåll</span>
+        </div>
       </div>
 
       <div className="stats-row">
@@ -63,24 +83,39 @@ export default function AdminDashboard(){
           <p className="muted">Översikt över nyligen skapade artiklar</p>
           <ul className="news-list">
             {news && news.length > 0 ? news.map((n, idx) => (
-              <li key={idx}>
-                <div className="news-title">{n.title}{n.type==='campaign'? ' — Kampanj':''}</div>
-                <div className="news-meta">{new Date(n.date).toISOString().slice(0,10)} <span className={`badge ${n.status==='draft'?'draft':'active'}`}>{n.status==='draft'?'Utkast':'Aktiv'}</span></div>
+              <li key={idx} className={`news-item ${n.tag? n.tag.toLowerCase() : (n.type==='campaign'?'kampanj':'nyhet')}`}>
+                <div className="news-card-body list-mode">
+                  <div className="news-card-title">{n.title}</div>
+                  <div className="news-card-right">
+                    <span className={`pill ${n.tag? n.tag.toLowerCase() : (n.type==='campaign'?'kampanj':'nyhet')}`}>{n.tag || (n.type==='campaign' ? 'Kampanj' : 'Nyhet')}</span>
+                    <span className={`badge ${n.status==='draft'?'draft':'active'}`}>{n.status==='draft'?'Utkast':'Aktiv'}</span>
+                  </div>
+                </div>
+                <div className="news-meta">{new Date(n.date).toISOString().slice(0,10)}</div>
               </li>
             )) : (
-              // fallback static
+              // fallback static (matches provided attachment)
               <>
-                <li>
-                  <div className="news-title">Nya öppettider under helger</div>
-                  <div className="news-meta">2024-01-15 <span className="badge active">Aktiv</span></div>
+                <li className="news-item nyhet">
+                  <div className="news-card-body list-mode">
+                    <div className="news-card-title">Nya öppettider från 1 januari</div>
+                    <div className="news-card-right"><span className="pill nyhet">Nyhet</span><span className="badge active">Aktiv</span></div>
+                  </div>
+                  <div className="news-meta">2024-01-15</div>
                 </li>
-                <li>
-                  <div className="news-title">Vinterkampanj - 20% rabatt</div>
-                  <div className="news-meta">2024-01-12 <span className="badge active">Aktiv</span></div>
+                <li className="news-item tips">
+                  <div className="news-card-body list-mode">
+                    <div className="news-card-title">Veckans speltips</div>
+                    <div className="news-card-right"><span className="pill tips">Tips</span><span className="badge active">Aktiv</span></div>
+                  </div>
+                  <div className="news-meta">2024-01-12</div>
                 </li>
-                <li>
-                  <div className="news-title">Nya produkter i sortimentet</div>
-                  <div className="news-meta">2024-01-10 <span className="badge draft">Utkast</span></div>
+                <li className="news-item kampanj">
+                  <div className="news-card-body list-mode">
+                    <div className="news-card-title">Julkampanj - 15% rabatt på godis</div>
+                    <div className="news-card-right"><span className="pill kampanj">Kampanj</span><span className="badge active">Aktiv</span></div>
+                  </div>
+                  <div className="news-meta">2024-01-10</div>
                 </li>
               </>
             )}
