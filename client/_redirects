@@ -1,1 +1,6 @@
 /*  /index.html  200
+
+# Proxy API requests to your Ubuntu server so Netlify forwards /api/* to the API
+# Temporary: proxy to server public IP and port
+# Replace with a proper domain later when available
+/api/*  http://158.220.97.101:4000/api/:splat  200
